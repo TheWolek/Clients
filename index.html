@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Klienci</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="wrap">
+        <div class="baner">
+            <h1>Wybierz akcje</h1>
+        </div>
+        <div class="main">
+            <div class="main-center">
+                <label for="submit" id="label-btn">
+                    <div>
+                        <form action="backend/display-all.php" method="post">
+                            <input id="submit" type="submit" value="Wszystko" class="btn-btn"/>
+                        </form>
+                    </div>
+                </label>
+                <div class="btn" onclick="generateForm(1)">
+                    Znajdź klienta
+                </div>
+                <div class="btn" onclick="generateForm(2)">
+                    Dodaj klienta
+                </div>
+            </div>
+        </div>
+        <div class="form">
+            <div class="form-center" id="form">
+               
+            </div>
+        </div>
+        <div class="footer"></div>
+    </div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/generateForm.js"></script>
+    <script src="js/addClient.js"></script>
+</body>
+</html>
