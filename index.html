@@ -2,41 +2,93 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Klienci</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="css/style.css">
+    <!--<link rel="stylesheet" href="css/style.css">-->
+    <link rel="stylesheet" href="css/styl1.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body>
-    <div class="wrap">
-        <div class="baner">
+<body style="background: #232930">
+    <div class="container bg-dark vh-100">
+        <div class="col baner text-light text-center">
             <h1>Wybierz akcje</h1>
         </div>
-        <div class="main">
+        <div class="col main">
             <div class="main-center">
-                <label for="submit" id="label-btn">
-                    <div>
-                        <form action="backend/display-all.php" method="post">
-                            <input id="submit" type="submit" value="Wszystko" class="btn-btn"/>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" href="backend/display-all.php">Wszystko</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="ShowForm(1)" id="nav-1" href="#">Znajdź klienta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="ShowForm(2)" id="nav-2" href="#">Dodaj klienta </a>
+                    </li>
+                </ul> 
+            </div>
+        </div>
+        <div class="col form h-50 pt-3 pd-3">
+            <div class="row justify-content-around">
+                <div class="col-4 align-self-center">
+                    <div id="form1" style="display: none;">
+                        <form action="backend/executeFormFind.php" method="post">
+                            <div class="form-group">
+                                <input type="text" name="kolor" placeholder="kolor" class="form-control"/>
+                            </div> 
+                            <div class="form-group">
+                                <input type="date" name="data_wizyty" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="button" value="wczoraj" onclick="FormSetDate(-1)" class="btn btn-secondary"/>
+                                <input type="button" value="dzisiaj" onclick="FormSetDate(0)" class="btn btn-secondary"/>
+                                <input type="button" value="jutro" onclick="FormSetDate(1)" class="btn btn-secondary"/>
+                            </div>
+                            <input type="submit" value="Znajdź" class="btn btn-primary"/>
                         </form>
+                        <a href="/clients/backend/executeFormOld.php" class="btn btn-secondary mt-2">Znajdź stare</a>
                     </div>
-                </label>
-                <div class="btn" onclick="generateForm(1)">
-                    Znajdź klienta
-                </div>
-                <div class="btn" onclick="generateForm(2)">
-                    Dodaj klienta
+                    <div id="form2" style="display: none;">
+                            <div class="form-group">
+                                <input type="number" id="telefon" placeholder="telefon" autocomplete="off" class="form-control"/>
+                            </div> 
+                            <div class="form-group">
+                                <input type="date" id="data_wizyty" autocomplete="off" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                    <input type="text" id="numer_farby" placeholder="kolor" autocomplete="off" class="form-control"/>
+                                </div>
+                            <input type="button" value="Dodaj" onclick="addClient()" class="btn btn-primary"/>
+                    </div>
+                    <div id="formAdd" style="display: none;">
+                        <form action="backend/AddClient.php" method="post">
+                            <div class="form-group">
+                                <label for="telefonA" class="text-light">Telefon</label>
+                                <input type="number" id="telefonA" name="telefon" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="data_wizytyA" class="text-light">Data wizyty</label>
+                                <input type="date" id="data_wizytyA" name="data" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="numer_farbyA" class="text-light">Numer Farby</label>
+                                <input type="text" id="numer_farbyA" name="farba" class="form-control">
+                            </div>
+                            <input type="submit" value="Dodaj" class="btn btn-primary">
+                        </form>  
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="form">
-            <div class="form-center" id="form">
-               
-            </div>
+        <div class="col text-center">
+            <img src="img/logo.png" alt="logo" class="img-fluid ">
         </div>
-        <div class="footer"></div>
     </div>
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/generateForm.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="js/ShowForm.js"></script>
     <script src="js/addClient.js"></script>
 </body>
 </html>

@@ -15,17 +15,17 @@ function findOne() {
 
     let output = '<form action="../backend/ModifyOne.php" method="post">'
     for(let i=0;i<client.length;i++) {
-        output += '<label>' + client[i][1]
+        output += '<div class="form-group"><label class="text-light">' + client[i][1]
         if(client[i][1] == 'data') 
-            output += '<input type="date" value="' + client[i][0] +'" class="input" name="' + client[i][1] + '"/></label><br/>'
+            output += '<input type="date" value="' + client[i][0] +'" class="form-control" name="' + client[i][1] + '"/></label><br/>'
         else if (client[i][1] == 'telefon')
-            output += '<input type="number" value="' + client[i][0] +'" class="input" name="' + client[i][1] + '"/></label><br/>' 
+            output += '<input type="number" value="' + client[i][0] +'" class="form-control" name="' + client[i][1] + '"/></label><br/>' 
         else if(client[i][1] == 'id')
-            output += '<input type="number" value="' + client[i][0] +'" class="input" name="' + client[i][1] + '" readonly="readonly"/></label><br/>'
+            output += '<input type="number" value="' + client[i][0] +'" class="form-control" name="' + client[i][1] + '" readonly="readonly"/></label><br/>'
         else
-            output += '<input type="text" value="' + client[i][0] +'" class="input" name="' + client[i][1] + '"/></label><br/>'
+            output += '<input type="text" value="' + client[i][0] +'" class="form-control" name="' + client[i][1] + '"/></label><br/>'
     }
-    output += '<br/>Dane klienta zostaną zamienione. Jesteś pewien?<br/><input type="submit" value="Edytuj" class="input-btn"/></form>'
+    output += '<p class="text-light">Dane klienta zostaną zamienione. Jesteś pewien?</p><input type="submit" value="Edytuj" class="btn btn-success"/></form>'
 
     area.innerHTML = output
 }

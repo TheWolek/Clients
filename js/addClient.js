@@ -6,13 +6,14 @@ function addClient() {
         [document.getElementById('numer_farby').value,"farba"]
     ]
 
-    let area = document.getElementById('area')
-    area.innerHTML = ''
-
     console.log(clientData)
+    document.getElementById('form2').style.display='none'
+    document.getElementById('formAdd').style.display='block'
+    document.getElementById('telefonA').value=clientData[0][0]
+    document.getElementById('data_wizytyA').value=clientData[1][0]
+    document.getElementById('numer_farbyA').value=clientData[2][0]
 
-    let output = '<form action="backend/AddClient.php" method="post">'
-
+    /*
     for(let i=0;i<clientData.length;i++) {
         output += '<label>' + clientData[i][1] + '</label>'
         if(clientData[i][1] == 'data') 
@@ -24,4 +25,5 @@ function addClient() {
     }
     output += '<br/><span class="dark-text">Klient zostanie dodany do bazy? Jesteś pewien?</span><br/><input type="submit" value="dodaj" class="input-submit"/>'
     area.innerHTML = output
+    */
 }

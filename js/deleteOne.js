@@ -13,9 +13,9 @@ function deleteOne() {
 
     let output = '<form action="../backend/DeleteOne.php" method="post">'
     for(let i=0;i<client.length;i++) {
-        output += '<input type="text" value="' + client[i][0] + '" name="' + client[i][1] + '" class="input" readonly="readonly"/><br/>'
+        output += '<input type="text" value="' + client[i][0] + '" name="' + client[i][1] + '" class="form-control" readonly="readonly"/><br/>'
     }
 
-    output += '<br/><span class="dark-text">Klient zostanie trwale usunięty z bazy. Jesteś pewien?</span><br/><input type="submit" value="usuń" class="input-btn"/>'
+    output += '<p class="text-light">Klient zostanie trwale usunięty z bazy. Jesteś pewien?</p><input type="submit" value="usuń" class="btn btn-danger"/>'
     area.innerHTML = output
 }
