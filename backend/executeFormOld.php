@@ -9,22 +9,25 @@
     <link rel="stylesheet" href="../css/styl1.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body style="background: #232930">
-    <div class="container bg-dark vh-100">
+<body>
+    <div class="container bg-dark h-100 p-4">
         <div class="col baner text-light text-center">
-            <h1>Wybierz akcje</h1>
+            <h1>Wynik wyszukania</h1>
         </div>
         <div class="col main">
             <div class="main-center">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
+                        <a class="nav-link" href="/clients/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/clients/backend/display-all.php">Wszystko</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" onclick="ShowForm(1)" id="nav-1" href="/clients/index.html">Znajdź klienta</a>
+                        <a class="nav-link active" onclick="ShowForm(1)" id="nav-1" href="/clients/find.html">Znajdź klienta</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" onclick="ShowForm(2)" id="nav-2" href="/clients/index.html">Dodaj klienta </a>
+                        <a class="nav-link" onclick="ShowForm(2)" id="nav-2" href="/clients/create.html">Dodaj klienta </a>
                     </li>
                 </ul> 
             </div>
@@ -34,10 +37,13 @@
                 <div class="col-6 align-self-center">
                 <form action="/clients/backend/executeFormFind.php" method="post">
                     <div class="form-group">
+                        <input type="number" name="telefon" placeholder="telefon" class="form-control"/>
+                    </div> 
+                    <div class="form-group">
                         <input type="text" name="kolor" placeholder="kolor" class="form-control"/>
                     </div> 
                     <div class="form-group">
-                        <input type="date" name="data_wizyty" class="form-control"/>
+                        <input type="date" name="data_wizyty" class="form-control" id="data"/>
                     </div>
                     <div class="form-group">
                         <input type="button" value="wczoraj" onclick="FormSetDate(-1)" class="btn btn-secondary"/>

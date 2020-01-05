@@ -1,17 +1,17 @@
 //addClient
 function addClient() {
     let clientData = [
-        [document.getElementById('telefon').value,"telefon"],
-        [document.getElementById('data_wizyty').value,"data"],
-        [document.getElementById('numer_farby').value,"farba"]
+        [$('#telefon').val(),"telefon"],
+        [$('#data_wizyty').val(),"data"],
+        [$('#numer_farby').val(),"farba"]
     ]
 
     console.log(clientData)
-    document.getElementById('form2').style.display='none'
-    document.getElementById('formAdd').style.display='block'
-    document.getElementById('telefonA').value=clientData[0][0]
-    document.getElementById('data_wizytyA').value=clientData[1][0]
-    document.getElementById('numer_farbyA').value=clientData[2][0]
+    $('#form2').css('display','none')
+    $('#formAdd').css('display','block')
+    $('#telefonA').val(clientData[0][0])
+    $('#data_wizytyA').val(clientData[1][0])
+    $('#numer_farbyA').val(clientData[2][0])
 
     /*
     for(let i=0;i<clientData.length;i++) {

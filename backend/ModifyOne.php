@@ -9,22 +9,25 @@
     <link rel="stylesheet" href="../css/styl1.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body style="background: #232930">
-    <div class="container bg-dark vh-100">
+<body>
+    <div class="container bg-dark vh-100 p-4">
         <div class="col baner text-light text-center">
-            <h1>Wybierz akcje</h1>
+            <h1>Zmodyfikowano klienta</h1>
         </div>
         <div class="col main">
             <div class="main-center">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
+                        <a class="nav-link" href="/clients/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/clients/backend/display-all.php">Wszystko</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" onclick="ShowForm(1)" id="nav-1" href="/clients/index.html">Znajdź klienta</a>
+                        <a class="nav-link active" onclick="ShowForm(1)" id="nav-1" href="/clients/find.html">Znajdź klienta</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" onclick="ShowForm(2)" id="nav-2" href="/clients/index.html">Dodaj klienta </a>
+                        <a class="nav-link" onclick="ShowForm(2)" id="nav-2" href="/clients/create.html">Dodaj klienta </a>
                     </li>
                 </ul> 
             </div>
@@ -44,9 +47,9 @@
                     $sql = "update clients set telefon = '$tel', data_wizyty = '$data', numer_farby = '$farba' where id = '$id'";
 
                     if(DB_query($sql)) {
-                        echo "<p class='text-light'>Pomyślnie zaktualizowano dane klienta</p>";
+                        echo "<div class='alert alert-success text-center' role='alert'><h4 class='alert heading'>Pomyślnie zmodyfikowano dane klienta!</h4></div>";
                     } else {
-                        echo "<p class='text-light'>Błąd podczas aktualizowania danych</p>";
+                        echo "<div class='alert alert-danger text-center' role='alert'><h4 class='alert heading'>Wystąpił błąd przy modyfikacji danych klienta!</h4></div>";
                     }
 
 

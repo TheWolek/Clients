@@ -9,29 +9,32 @@
     <link rel="stylesheet" href="../css/styl1.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body style="background: #232930">
-    <div class="container bg-dark vh-100">
+<body>
+    <div class="container bg-dark h-100 p-4">
         <div class="col baner text-light text-center">
-            <h1>Wybierz akcje</h1>
+            <h1>Wszyscy klienci</h1>
         </div>
         <div class="col main">
             <div class="main-center">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
+                        <a class="nav-link" href="/clients/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" href="/clients/backend/display-all.php">Wszystko</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" onclick="ShowForm(1)" id="nav-1" href="../index.html">Znajdź klienta</a>
+                        <a class="nav-link" onclick="ShowForm(1)" id="nav-1" href="../find.html">Znajdź klienta</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" onclick="ShowForm(2)" id="nav-2" href="../index.html">Dodaj klienta </a>
+                        <a class="nav-link" onclick="ShowForm(2)" id="nav-2" href="../create.html">Dodaj klienta </a>
                     </li>
                 </ul> 
             </div>
         </div>
-        <div class="col form h-50 pt-3 pd-3">
+        <div class="col form vh-50 pt-3 pd-3">
             <div class="row justify-content-around">
-                <div class="col-6 align-self-center">
+                <div class="col-8 align-self-center">
                 <?php
                     //display-all
                     header("Content-Type: text/html;charset=UTF-8");
@@ -41,9 +44,9 @@
                     $sql = 'select count(*) from clients';
                     $result = DB_query($sql);
                     $result = $result->fetch_array();
-                    $pageTotal = ceil($result[0] / 2);
+                    $pageTotal = ceil($result[0] / 4);
 
-                    $sql = 'select id, telefon, data_wizyty, numer_farby from clients order by data_wizyty limit 2';
+                    $sql = 'select id, telefon, data_wizyty, numer_farby from clients order by data_wizyty limit 4';
                     $result = DB_query($sql);
 
                     if($result->num_rows > 0) {
@@ -54,29 +57,31 @@
                         $date = date("Y-m-d");
                         $curPage = $page + 1;
                         echo "<div class='page-counter text-light'>Strona: ".$curPage." / ".$pageTotal."</div>";
-                        echo "<table class='table table-dark table-hover'><thead class='thead-dark'><tr><th>ID</th><th>Nr. telefonu</th><th>data ostatniej wizyty</th><th>numer farby</th></tr></thead><tbody>";
+                        echo "<table class='table table-dark table-hover'><thead class='thead-dark'><tr><th>ID</th><th>Nr. telefonu</th><th>data ostatniej wizyty</th><th>numer farby</th><th>Edytuj</th><th>Usuń</th></tr></thead><tbody>";
                         while($row=$result->fetch_assoc()) {
-                            echo "<tr><td>{$row['id']}</td><td>{$row['telefon']}</td>";
+                            echo "<tr><td id='idRow'>{$row['id']}</td><td id='telefonRow'>{$row['telefon']}</td>";
                             if ($row['data_wizyty'] < $date) {
-                                echo "<td class='pastDate'>{$row['data_wizyty']}</td>";
+                                echo "<td><span id='dataRow'>{$row['data_wizyty']}</span><span class='badge badge-danger ml-1'>Stary</span></td>";
                             } else if($row['data_wizyty'] == $date) {
-                                echo "<td class='todayDate'>{$row['data_wizyty']}</td>";
+                                echo "<td><span id='dataRow'>{$row['data_wizyty']}</span><span class='badge badge-success ml-1'>Dzisiaj</span></td>";
                             } else {
-                                echo "<td>{$row['data_wizyty']}</td>";
+                                echo "<td><span id='dataRow'>{$row['data_wizyty']}</span></td>";
                             }
-                            echo "<td>{$row['numer_farby']}</td></tr>";
+                            echo "<td id='farbaRow'>{$row['numer_farby']}</td><td><input type='button' onClick='findOne()' class='btn btn-info' value='Edytuj'/></td><td><input type='button' onClick='deleteOne()' class='btn btn-danger' value='Usuń'/></td></tr>";
                         }
                         echo "</tbody></table>";
-                        echo "<form action='nextPage.php' method='post' class='nav-form'><input type='submit' value='Next' class='form-control'/></form>";
+                        echo "<form action='nextPage.php' method='post' class='nav-form'><input type='submit' value='Next' class='btn btn-primary mb-2'/></form>";
                     } else {
-                        echo "Brak wyników<br/>";
+                        echo "<p class='text-light'>Brak wyników</p>";
                     }
                   
                 ?>
+                <div id="area" class="text-center mt-2"></div>
                 </div>
             </div>
+            
         </div>
-        <div class="col text-center">
+        <div class="text-center container vh-10">
             <img src="../img/logo.png" alt="logo" class="img-fluid ">
         </div>
     </div>
@@ -85,5 +90,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="../js/ShowForm.js"></script>
     <script src="../js/addClient.js"></script>
+    <script src="../js/displayOne.js"></script>
+    <script src="../js/deleteOne.js"></script>
 </body>
 </html>

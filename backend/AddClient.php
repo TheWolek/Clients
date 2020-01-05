@@ -9,22 +9,25 @@
     <link rel="stylesheet" href="../css/styl1.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body style="background: #232930">
-    <div class="container bg-dark vh-100">
+<body>
+    <div class="container bg-dark vh-100 p-4">
         <div class="col baner text-light text-center">
-            <h1>Wybierz akcje</h1>
+            <h1>Dodano klienta</h1>
         </div>
         <div class="col main">
             <div class="main-center">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
+                        <a class="nav-link" href="/clients/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/clients/backend/display-all.php">Wszystko</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" onclick="ShowForm(1)" id="nav-1" href="/clients/index.html">Znajdź klienta</a>
+                        <a class="nav-link" onclick="ShowForm(1)" id="nav-1" href="/clients/find.html">Znajdź klienta</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" onclick="ShowForm(2)" id="nav-2" href="/clients/index.html">Dodaj klienta </a>
+                        <a class="nav-link active" onclick="ShowForm(2)" id="nav-2" href="/clients/create.html">Dodaj klienta </a>
                     </li>
                 </ul> 
             </div>
@@ -43,17 +46,17 @@
                         $color = $_POST['farba'];
                         
                         if(strlen($phone) != 9) {
-                            $output = 'Podany numer telefonu jest nie poprawny';
+                            $output = "<div class='alert alert-danger text-center' role='alert'><h4 class='alert heading'>Podany numer telefonu jest nie poprawny!</h4></div>";
                         } else {
                             $sql = "insert into clients (telefon,data_wizyty,numer_farby) values('$phone','$date','$color')";
                             if($result = DB_query($sql)) {
-                                echo "<p class='text-light'>Pomyślnie dodano nowego klienta</p>";
+                                echo "<div class='alert alert-success text-center' role='alert'><h4 class='alert heading'>Pomyślnie dodano nowego klienta!</h4></div>";
                             } else {
-                                echo "<p class='text-light'>Błąd podczas dodawania klienta</p>";
+                                echo "<div class='alert alert-danger text-center' role='alert'><h4 class='alert heading'>Wystąpił błąd przy dodwaniu klienta!</h4></div>";
                             }
                         }
                     } else {
-                        $output = '<p class="text-light">Wypełnij wszystkie pola</p>';
+                        $output = "<div class='alert alert-danger text-center' role='alert'><h4 class='alert heading'>Wypełnij wszystkie pola!</h4></div>";
                     }           
                     echo $output;       
                 ?> 

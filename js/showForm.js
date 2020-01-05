@@ -1,24 +1,27 @@
 function ShowForm(id) {
     let form = 'form'+id
-    console.log(form)
-    document.getElementById('formAdd').style.display='none'
+    //console.log(form)
+    $('#formAdd').css('display','none')
     if(form == 'form1') {
-        document.getElementById(form).style.display = 'block'
-        document.getElementById('form2').style.display = 'none'
-        document.getElementById('nav-1').className += ' active'
-        document.getElementById('nav-2').className = 'nav-link'
+        $('#'+form).css('display','block')
+        $('#form2').css('display','none')
+        $('#nav-1').addClass('active')
+        $('#nav-2').removeClass('active')
+        $('#header').html('Znajdź klienta')
     } else {
-        document.getElementById(form).style.display = 'block'
-        document.getElementById('form1').style.display = 'none'
-        document.getElementById('data_wizyty').value = GetSafeDate(0)
-        document.getElementById('nav-2').className += ' active'
-        document.getElementById('nav-1').className = 'nav-link'
+        $('#'+form).css('display','block')
+        $('#form1').css('display','none')
+        $('#nav-2').addClass('active')
+        $('#nav-1').removeClass('active')
+        $('#header').html('Dodaj klienta')
+        $('#data_wizyty').val(GetSafeDate(0))
     }
 }
 
 function FormSetDate(mode) {
     let date = GetSafeDate(mode)
-    document.getElementsByName('data_wizyty')[0].value = date
+    $('#data').val(date)
+
 }
 
 function GetSafeDate(mode) {
