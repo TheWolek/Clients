@@ -1,18 +1,18 @@
 //displayOne
-function findOne() {
+function findOne(id) {
     //0-id 1-imie 2-nazwisko 3-telefon 4-data 5-farba
     let client = [
-        [$('#idRow').html(),"id"],
-        [$('#telefonRow').html(),"telefon"],
-        [$('#dataRow').html(),"data"],
-        [$('#farbaRow').html(),"farba"]
+        [$('#idRow'+id).html(),"id"],
+        [$('#telefonRow'+id).html(),"telefon"],
+        [$('#dataRow'+id).html(),"data"],
+        [$('#farbaRow'+id).html(),"farba"]
     ]
 
     //console.log()
-    area = $('#area')
+    area = $('#FResults') //zmienic w szukaniu klienta
     area.html('')
 
-    let output = '<form action="../backend/ModifyOne.php" method="post">'
+    let output = '<form action="/clients/backend/ModifyOne.php" method="post">'
     for(let i=0;i<client.length;i++) {
         output += '<div class="form-group"><label class="text-light">' + client[i][1]
         if(client[i][1] == 'data') 

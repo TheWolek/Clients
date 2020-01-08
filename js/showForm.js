@@ -1,18 +1,17 @@
 function ShowForm(id) {
     let form = 'form'+id
     //console.log(form)
-    $('#formAdd').css('display','none')
     if(form == 'form1') {
-        $('#'+form).css('display','block')
-        $('#form2').css('display','none')
-        $('#nav-1').addClass('active')
-        $('#nav-2').removeClass('active')
+        ToggleElement(form,true)
+        ToggleElement('form2',false)
+        ToggleElement('Results',false)
+        ToggleTab(1)
         $('#header').html('Znajdź klienta')
     } else {
-        $('#'+form).css('display','block')
-        $('#form1').css('display','none')
-        $('#nav-2').addClass('active')
-        $('#nav-1').removeClass('active')
+        ToggleElement(form,true)
+        ToggleElement('form1',false)
+        ToggleElement('Results',false)
+        ToggleTab(2)
         $('#header').html('Dodaj klienta')
         $('#data_wizyty').val(GetSafeDate(0))
     }
