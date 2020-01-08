@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="container bg-dark h-100 p-4">
-        <div class="col baner text-light text-center">
+        <div class="col-sm baner text-light text-center">
             <h1>Wszyscy klienci</h1>
         </div>
         <div class="col main">
@@ -34,7 +34,8 @@
         </div>
         <div class="col form vh-50 pt-3 pd-3">
             <div class="row justify-content-around">
-                <div class="col-8 align-self-center">
+                <div class="col-sm-8 align-self-center">
+                    <div class="table-responsive">
                 <?php
                     //display-all
                     header("Content-Type: text/html;charset=UTF-8");
@@ -76,6 +77,7 @@
                     }
                   
                 ?>
+                </div>
                 <div id="area" class="text-center mt-2"></div>
                 </div>
             </div>

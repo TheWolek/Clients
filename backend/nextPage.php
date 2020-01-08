@@ -34,7 +34,8 @@
         </div>
         <div class="col form h-50 pt-3 pd-3">
             <div class="row justify-content-around">
-                <div class="col-8 align-self-center">
+                <div class="col-sm-8 align-self-center">
+                <div class="table-responsive">
                 <?php
                     //display-all
                     header("Content-Type: text/html;charset=UTF-8");
@@ -81,6 +82,7 @@
                     }
                   
                 ?>
+                </div>
                 <div id="area" class="text-center mt-2"></div>
                 </div>
             </div>

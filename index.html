@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container bg-dark vh-100 p-4">
-        <div class="col baner text-light text-center">
+    <div class="container bg-dark h-100 p-4">
+        <div class="col-sm baner text-light text-center">
             <h1 id="header">Wybierz akcje</h1>
         </div>
         <div class="col main">
@@ -33,9 +33,8 @@
             </div>
         </div>
         <div class="col form h-50 pt-3 pd-3">
-            <div class="row justify-content-around">
-                <div class="col-4 align-self-center">
-                    <div id="form1" style="display: none;">
+                <div class="row justify-content-around">
+                    <div id="form1" class="col-sm-8" style="display: none;">
                         <form action="backend/executeFormFind.php" method="post">
                             <div class="form-group">
                                 <input type="number" name="telefon" placeholder="telefon" class="form-control"/>
@@ -44,7 +43,7 @@
                                 <input type="text" name="kolor" placeholder="kolor" class="form-control"/>
                             </div> 
                             <div class="form-group">
-                                <input type="date" name="data_wizyty" class="form-control" id="data"/>
+                                <input type="date" name="data_wizyty" class="form-control" id="data" placeholder="data wizyty"/>
                             </div>
                             <div class="form-group">
                                 <input type="button" value="wczoraj" onclick="FormSetDate(-1)" class="btn btn-secondary"/>
@@ -55,7 +54,7 @@
                         </form>
                         <a href="/clients/backend/executeFormOld.php" class="btn btn-secondary mt-2">Znajdź stare</a>
                     </div>
-                    <div id="form2" style="display: none;">
+                    <div id="form2" class="col-sm-8" style="display: none;">
                             <div class="form-group">
                                 <input type="number" id="telefon" placeholder="telefon" autocomplete="off" class="form-control"/>
                             </div> 
@@ -67,7 +66,7 @@
                                 </div>
                             <input type="button" value="Dodaj" onclick="addClient()" class="btn btn-primary"/>
                     </div>
-                    <div id="formAdd" style="display: none;">
+                    <div id="formAdd" class="col-sm-8" style="display: none;">
                         <form action="backend/AddClient.php" method="post">
                             <div class="form-group">
                                 <label for="telefonA" class="text-light">Telefon</label>
@@ -81,13 +80,13 @@
                                 <label for="numer_farbyA" class="text-light">Numer Farby</label>
                                 <input type="text" id="numer_farbyA" name="farba" class="form-control">
                             </div>
+                            <p class="text-light">Klient zostanie dodany do bazy. Jesteś pewien?</p>
                             <input type="submit" value="Dodaj" class="btn btn-primary">
                         </form>  
                     </div>
                 </div>
-            </div>
         </div>
-        <div class="col text-center">
+        <div class="col text-center mt-3">
             <img src="img/logo.png" alt="logo" class="img-fluid ">
         </div>
     </div>

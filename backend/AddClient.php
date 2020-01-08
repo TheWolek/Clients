@@ -34,7 +34,7 @@
         </div>
         <div class="col form h-50 pt-3 pd-3">
             <div class="row justify-content-around">
-                <div class="col-6 align-self-center">
+                <div class="col-sm-8 align-self-center">
                 <?php
                     include 'query.php';
 

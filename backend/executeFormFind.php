@@ -34,7 +34,7 @@
         </div>
         <div class="col form vh-50 pt-3 pd-3">
             <div class="row justify-content-around">
-                <div class="col-6 align-self-center">
+                <div class="col-sm-8 align-self-center">
                 <form action="/clients/backend/executeFormFind.php" method="post">
                     <div class="form-group">
                         <input type="number" name="telefon" placeholder="telefon" class="form-control"/>
@@ -53,6 +53,7 @@
                     <input type="submit" value="Znajdź" class="btn btn-primary"/>
                 </form>
                 <a href="/clients/backend/executeFormOld.php" class="btn btn-secondary mt-2">Znajdź stare</a>
+                <div class="table-responsive">
                 <?php
                     //display-one
                     include 'query.php';
@@ -100,6 +101,7 @@
                     }
                   
                 ?>    
+                </div>
                 </div>
             </div>
         </div>
