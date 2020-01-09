@@ -15,7 +15,8 @@ if($result->num_rows > 0) {
     echo "<div id='FResults'><div class='page-counter text-light' id='pageCounter'></div>";
     echo "<table class='table table-dark table-hover'><thead class='thead-dark'><tr><th>ID</th><th>Imie i nazwisko</th><th>data ostatniej wizyty</th><th>numer farby</th><th>Edytuj</th><th>Usuń</th></tr></thead><tbody>";
     while($row=$result->fetch_assoc()) {
-        echo "<tr><td id='idRow{$row['id']}'>{$row['id']}</td><td id='DaneRow{$row['id']}'>{$row['imie_nazwisko']}</td>";
+        $dane = ucwords($row['imie_nazwisko']);
+        echo "<tr><td id='idRow{$row['id']}'>{$row['id']}</td><td id='DaneRow{$row['id']}'>{$dane}</td>";
     if ($row['data_wizyty'] < $date) {
         echo "<td><span id='dataRow{$row['id']}'>{$row['data_wizyty']}</span><span class='badge badge-danger ml-1'>Stary</span></td>";
     } else if($row['data_wizyty'] == $date) {

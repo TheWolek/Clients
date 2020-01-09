@@ -13,7 +13,8 @@ if(@$result->num_rows > 0) {
     echo $output;
     echo "<table class='table table-dark table-hover'><thead class='thead-dark'><tr><th>ID</th><th>imie i nazwisko</th><th>data ostatniej wizyty</th><th>numer farby</th><th>Edytuj</th><th>Usuń</th></tr></thead><tbody>";
     while($row=$result->fetch_assoc()) {
-        echo "<tr><td id='idRow{$row['id']}'>{$row['id']}</td><td id='DaneRow{$row['id']}'>{$row['imie_nazwisko']}</td><td id='dataRow{$row['id']}'>{$row['data_wizyty']}</td><td id='farbaRow{$row['id']}'>{$row['numer_farby']}</td>";
+        $dane = ucwords($row['imie_nazwisko']);
+        echo "<tr><td id='idRow{$row['id']}'>{$row['id']}</td><td id='DaneRow{$row['id']}'>{$dane}</td><td id='dataRow{$row['id']}'>{$row['data_wizyty']}</td><td id='farbaRow{$row['id']}'>{$row['numer_farby']}</td>";
         echo "<td><input type='button' onClick='findOne({$row['id']})' class='btn btn-info' value='Edytuj'/></td><td><input type='button' onClick='deleteOne({$row['id']})' class='btn btn-danger' value='Usuń'/></td></tr>";
     }
     echo "</tbody></table></div>";

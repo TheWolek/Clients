@@ -1,3 +1,3 @@
 window.setTimeout(() => {
-    window.location.href = "http://localhost/clients/index.html"
+    window.location.href = "/clients/index.html"
 }, 2000)
