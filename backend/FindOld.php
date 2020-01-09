@@ -7,7 +7,7 @@ $date = date("Y-m-d");
 
 $sql = 'select id, telefon, data_wizyty, numer_farby from clients where data_wizyty < "'.$date.'"';
 //echo $sql."<BR/>";
-$result = DB_query($sql);
+$result = DB_query($sql,FALSE);
 if(@$result->num_rows > 0) {
     echo "<div id='FResults' class='table-responsive'>";
     echo $output;

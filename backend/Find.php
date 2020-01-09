@@ -28,7 +28,7 @@ if(isset($_POST['data_wizyty']) && $_POST['data_wizyty'] != '') {
 
 $sql = 'select id, telefon, data_wizyty, numer_farby from clients where '.$condition;
 //echo $sql."<BR/>";
-$result = DB_query($sql);
+$result = DB_query($sql,FALSE);
 if(@$result->num_rows > 0) {
     echo "<div class='table-responsive' id='FResults'>";
     echo "<div class='text-light'>".$output."</div>";

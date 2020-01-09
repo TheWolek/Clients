@@ -3,12 +3,12 @@
 include 'query.php';
 
 $sql = 'select count(*) from clients';
-$result = DB_query($sql);
+$result = DB_query($sql,FALSE);
 $result = $result->fetch_array();
 $pageTotal = ceil($result[0] / 4);
 
 $sql = 'select id, telefon, data_wizyty, numer_farby from clients order by data_wizyty';
-$result = DB_query($sql);
+$result = DB_query($sql,FALSE);
 
 if($result->num_rows > 0) {
     $date = date("Y-m-d");

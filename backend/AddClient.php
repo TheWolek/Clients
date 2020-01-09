@@ -13,7 +13,7 @@ if($_POST['telefon'] != '' && $_POST['data'] != '' && $_POST['farba'] != '') {
         header('location: http://localhost/clients/Action.php?succ=0&err=phone');
     } else {
             $sql = "insert into clients (telefon,data_wizyty,numer_farby) values('$phone','$date','$color')";
-        if($result = DB_query($sql)) {
+        if($result = DB_query($sql,TRUE)) {
             //echo "<div class='alert alert-success text-center' role='alert'><h4 class='alert heading'>Pomyślnie dodano nowego klienta!</h4></div>";
             header('location: http://localhost/clients/Action.php?succ=1&msg=new');
         } else {

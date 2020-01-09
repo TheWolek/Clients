@@ -3,7 +3,7 @@
 include 'query.php';
 $id = $_POST['id'];
 $sql = "delete from clients where id = '$id'";
-if(DB_query($sql)) {
+if(DB_query($sql,TRUE)) {
     //echo "<div class='alert alert-success text-center' role='alert'><h4 class='alert heading'>Pomyślnie usunięto dane klienta!</h4></div>";
     header('location: http://localhost/clients/Action.php?succ=1&msg=remove');
 } else {
