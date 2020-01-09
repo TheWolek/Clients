@@ -3,7 +3,7 @@ function deleteOne(id) {
     //0-id 1-imie 2-nazwisko 3-telefon 4-data 5-farba
     let client = [
         [$('#idRow'+id).html(),"id"],
-        [$('#telefonRow'+id).html(),"telefon"],
+        [$('#DaneRow'+id).html(),"dane"],
         [$('#dataRow'+id).html(),"data"],
         [$('#farbaRow'+id).html(),"farba"]
     ]
