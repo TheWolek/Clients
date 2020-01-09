@@ -3,7 +3,7 @@ function ShowResults() {
     ToggleElement('form2',false)
     ToggleElement('Results',true)
     ToggleTab(0)
-    $('#header').html('Wszyscy klienci')
+    $('#header').html('Baza klientów')
 
     $.ajax({
         url:'/clients/backend/displayAll.php',
