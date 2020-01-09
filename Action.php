@@ -14,10 +14,11 @@
         <div class="col-sm baner text-light text-center">
             <h1 id="header">Wybierz akcje</h1>
         </div>
+        <hr>
         <div class="col form h-50 pt-3 pd-3">
                 <div class="row justify-content-around">
                     <?php
-                        if($_GET['succ'] == 1) {
+                        if(@$_GET['succ'] == 1) {
                             if(isset($_GET['msg'])) {
                                 $msg = $_GET['msg'];
                                 if($msg == 'new') {
@@ -26,10 +27,13 @@
                                     echo "<div class='alert alert-success text-center' role='alert'><h4 class='alert heading'>Pomyślnie zmodyfikowano dane klienta!</h4></div>";
                                 } else if($msg == 'remove') {
                                     echo "<div class='alert alert-success text-center' role='alert'><h4 class='alert heading'>Pomyślnie usunięto dane klienta!</h4></div>";
+                                } else if($msg == 'removeold') {
+                                    $date = $_GET['date'];
+                                    echo "<div class='alert alert-success text-center' role='alert'><h4 class='alert heading'>Pomyślnie usunięto dane klientów starsze niż $date!</h4></div>";
                                 }
                             }
                         } else {
-                            if(isset($_GET['err'])) {
+                            if(@isset($_GET['err'])) {
                                 $msg = $_GET['err'];
                                 if($msg == 'phone') {
                                     echo "<div class='alert alert-danger text-center' role='alert'><h4 class='alert heading'>Podany numer telefonu jest nie poprawny!</h4></div>";

@@ -35,7 +35,7 @@
         <div class="col form h-50 pt-3 pd-3">
                 <div class="row justify-content-around">
                     <div id="form1" class="col-sm-9" style="display: none;">
-                        <form action="backend/Find.php" method="post">
+                        <form id='find' method="post" action="">
                             <div class="form-group">
                                 <input type="number" name="telefon" placeholder="telefon" class="form-control"/>
                             </div> 
@@ -52,10 +52,19 @@
                             </div>
                             <input type="submit" value="Znajdź" class="btn btn-primary"/>
                         </form>
-                        <a href="/clients/backend/FindOld.php" class="btn btn-secondary mt-2">Znajdź stare</a>
+                        <div class="d-flex mt-2">
+                            <form action="" method="post" id="findOld">
+                                <input type="submit" value="Znajdź stare" class="btn btn-secondary">
+                            </form>
+                            <form action="/clients/backend/DeleteOld.php" method="post">
+                                <input type="submit" value="Usuń stare" class="btn btn-danger ml-2" style="display: none" id="deleteOldSubmit">
+                                <input type="button" value="Usuń stare" class="btn btn-danger ml-2" onclick="DeleteOldSure()" id="deleteOldBtn">
+                            </form>
+                        </div>
+                        
                     </div>
                     <div id="form2" class="col-sm-9" style="display: none;">
-                            <form action="backend/AddClient.php" method="post">
+                            <form action="/clients/backend/AddClient.php" method="post">
                                 <div class="form-group">
                                     <label for="telefonA" class="text-light">Telefon</label>
                                     <input type="number" id="telefonA" name="telefon" class="form-control">
