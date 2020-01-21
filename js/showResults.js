@@ -21,6 +21,21 @@ function DeleteOldSure() {
     $('#Results').html('<p class="text-danger font-weight-bold">Wszystkie stare wizyty zostaną usunięte. Jesteś pewien?</p>')
 }
 
+function DeleteSelected() {
+    const selected = document.getElementsByName('select')
+    let selectedArr = []
+    selected.forEach((select) => {
+        if(select.checked)
+            selectedArr.push(select.value)
+    })
+    console.log(selectedArr)
+
+    document.getElementById('deleteSelectedForm').action += '?selected=[' + selectedArr + ']'
+    ToggleElement('deleteSelectedSubmit',true)
+    ToggleElement('deleteSelectedBtn',false)
+    //console.log(document.getElementById('deleteSelectedForm').action += '?selected=[' + selectedArr + ']')
+}
+
 $(function () {
 
     $("#find").on( "submit" , function(){

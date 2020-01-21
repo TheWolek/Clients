@@ -32,23 +32,23 @@
         </nav>
         <section class="col form h-50 pt-3 pd-3">
                 <div class="row justify-content-around">
-                    <div id="form1" class="col-sm-9" style="display: none;">
+                    <div id="form1" class="col-sm-9 mb-3" style="display: none;">
                         <form id='find' method="post" action="">
-                            <div class="form-group">
+                            <div id="dane">
                                 <input type="text" name="imie_nazwisko" placeholder="imie i nazwisko" class="form-control"/>
                             </div> 
-                            <div class="form-group">
+                            <div id="kolor">
                                 <input type="text" name="kolor" placeholder="kolor" class="form-control"/>
                             </div> 
-                            <div class="form-group">
+                            <div id="dataForm">
                                 <input type="date" name="data_wizyty" class="form-control" id="data" placeholder="data wizyty"/>
                             </div>
-                            <div class="form-group">
+                            <div id="dataBtn">
                                 <input type="button" value="wczoraj" onclick="FormSetDate(-1)" class="btn btn-secondary"/>
                                 <input type="button" value="dzisiaj" onclick="FormSetDate(0)" class="btn btn-secondary"/>
                                 <input type="button" value="jutro" onclick="FormSetDate(1)" class="btn btn-secondary"/>
                             </div>
-                            <input type="submit" value="Znajdź" class="btn btn-primary"/>
+                            <input type="submit" value="Znajdź" class="btn btn-primary" id="submit"/>
                         </form>
                         <div class="d-flex mt-2">
                             <form action="" method="post" id="findOld">
@@ -57,6 +57,10 @@
                             <form action="/clients/backend/DeleteOld.php" method="post">
                                 <input type="submit" value="Usuń stare" class="btn btn-danger ml-2" style="display: none" id="deleteOldSubmit">
                                 <input type="button" value="Usuń stare" class="btn btn-danger ml-2" onclick="DeleteOldSure()" id="deleteOldBtn">
+                            </form>
+                            <form action="/clients/backend/DeleteSelected.php" method="post" id="deleteSelectedForm">
+                                <input type="submit" value="Usuń zaznaczone" class="btn btn-danger" style="display: none" id="deleteSelectedSubmit">
+                                <input type="button" value="Usuń zaznaczone" class="btn btn-danger" onclick="DeleteSelected()" id="deleteSelectedBtn">
                             </form>
                         </div>
                         

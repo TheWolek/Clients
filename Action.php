@@ -21,15 +21,32 @@
                         if(@$_GET['succ'] == 1) {
                             if(isset($_GET['msg'])) {
                                 $msg = $_GET['msg'];
-                                if($msg == 'new') {
-                                    echo "<div class='alert alert-success text-center' role='alert'><h4 class='alert heading'>Pomyślnie dodano nowego klienta!</h4></div>";
-                                } else if($msg == 'edit') {
-                                    echo "<div class='alert alert-success text-center' role='alert'><h4 class='alert heading'>Pomyślnie zmodyfikowano dane klienta!</h4></div>";
-                                } else if($msg == 'remove') {
-                                    echo "<div class='alert alert-success text-center' role='alert'><h4 class='alert heading'>Pomyślnie usunięto dane klienta!</h4></div>";
-                                } else if($msg == 'removeold') {
-                                    $date = $_GET['date'];
-                                    echo "<div class='alert alert-success text-center' role='alert'><h4 class='alert heading'>Pomyślnie usunięto dane klientów starsze niż $date!</h4></div>";
+
+                                switch ($msg) {
+                                    case 'new':
+                                        echo "<div class='alert alert-success text-center' role='alert'><h4 class='alert heading'>Pomyślnie dodano nowego klienta!</h4></div>";
+                                    break;
+                                    
+                                    case 'edit':
+                                        echo "<div class='alert alert-success text-center' role='alert'><h4 class='alert heading'>Pomyślnie zmodyfikowano dane klienta!</h4></div>";
+                                    break;
+
+                                    case 'remove':
+                                        echo "<div class='alert alert-success text-center' role='alert'><h4 class='alert heading'>Pomyślnie usunięto dane klienta!</h4></div>";
+                                    break;
+
+                                    case 'removeold':
+                                        $date = $_GET['date'];
+                                        echo "<div class='alert alert-success text-center' role='alert'><h4 class='alert heading'>Pomyślnie usunięto dane klientów starsze niż $date!</h4></div>";
+                                    break;
+
+                                    case 'removeselected':
+                                        $len = $_GET['len'];
+                                        if($len > 1) 
+                                            echo "<div class='alert alert-success text-center' role='alert'><h4 class='alert heading'>Pomyślnie usunięto dane $len klientów!</h4></div>";
+                                        else 
+                                            echo "<div class='alert alert-success text-center' role='alert'><h4 class='alert heading'>Pomyślnie usunięto dane $len klienta!</h4></div>";
+                                    break;
                                 }
                             }
                         } else {
