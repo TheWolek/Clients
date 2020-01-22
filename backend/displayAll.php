@@ -24,7 +24,7 @@ if($result->num_rows > 0) {
     } else {
         echo "<td><span id='dataRow{$row['id']}'>{$row['data_wizyty']}</span></td>";
     }
-    echo "<td id='farbaRow{$row['id']}'>{$row['numer_farby']}</td><td><div class='action-flex'><input type='button' onClick='findOne({$row['id']})' class='btn btn-info' value='Edytuj'/><input type='button' onClick='deleteOne({$row['id']})' class='btn btn-danger' value='Usuń'/></div></td></tr>";
+    echo "<td id='farbaRow{$row['id']}'>{$row['numer_farby']}</td><td><div class='action-flex'><input type='button' onClick='findOne({$row['id']})' class='btn btn-info' value='Edytuj'/><input type='button' onClick='deleteOne({$row['id']})' class='btn btn-danger ml-2' value='Usuń'/></div></td></tr>";
 }
     echo "</tbody></table></div>";
 } else {

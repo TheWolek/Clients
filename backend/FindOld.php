@@ -15,7 +15,7 @@ if(@$result->num_rows > 0) {
     while($row=$result->fetch_assoc()) {
         $dane = ucwords($row['imie_nazwisko']);
         echo "<tr><td><input type='checkbox' name='select' value='{$row['id']}'></td><td id='idRow{$row['id']}'>{$row['id']}</td><td id='DaneRow{$row['id']}'>{$dane}</td><td id='dataRow{$row['id']}'>{$row['data_wizyty']}</td><td id='farbaRow{$row['id']}'>{$row['numer_farby']}</td>";
-        echo "<td><div class='action-flex'><input type='button' onClick='findOne({$row['id']})' class='btn btn-info' value='Edytuj'/><input type='button' onClick='deleteOne({$row['id']})' class='btn btn-danger' value='Usuń'/></div></td></tr>";
+        echo "<td><div class='action-flex'><input type='button' onClick='findOne({$row['id']})' class='btn btn-info' value='Edytuj'/><input type='button' onClick='deleteOne({$row['id']})' class='btn btn-danger ml-2' value='Usuń'/></div></td></tr>";
     }
     echo "</tbody></table></div>";
 } else {

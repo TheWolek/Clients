@@ -47,3 +47,8 @@ input::-webkit-outer-spin-button {
     display: flex;
     justify-content: space-between;
 }
+
+.find-submit-flex {
+    display: flex;
+    margin-top: .5rem;
+}

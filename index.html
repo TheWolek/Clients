@@ -50,7 +50,7 @@
                             </div>
                             <input type="submit" value="Znajdź" class="btn btn-primary" id="submit"/>
                         </form>
-                        <div class="d-flex mt-2">
+                        <div class="find-submit-flex">
                             <form action="" method="post" id="findOld">
                                 <input type="submit" value="Znajdź stare" class="btn btn-secondary">
                             </form>
@@ -59,8 +59,8 @@
                                 <input type="button" value="Usuń stare" class="btn btn-danger ml-2" onclick="DeleteOldSure()" id="deleteOldBtn">
                             </form>
                             <form action="/clients/backend/DeleteSelected.php" method="post" id="deleteSelectedForm">
-                                <input type="submit" value="Usuń zaznaczone" class="btn btn-danger" style="display: none" id="deleteSelectedSubmit">
-                                <input type="button" value="Usuń zaznaczone" class="btn btn-danger" onclick="DeleteSelected()" id="deleteSelectedBtn">
+                                <input type="submit" value="Usuń zaznaczone" class="btn btn-danger ml-2" style="display: none" id="deleteSelectedSubmit">
+                                <input type="button" value="Usuń zaznaczone" class="btn btn-danger ml-2" onclick="DeleteSelected()" id="deleteSelectedBtn">
                             </form>
                         </div>
                         
