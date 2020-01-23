@@ -39,13 +39,6 @@ CREATE TABLE `clients` (
 -- Zrzut danych tabeli `clients`
 --
 
-INSERT INTO `clients` (`ID`, `imie_Nazwisko`, `data_wizyty`, `numer_farby`) VALUES
-(1, 'syla', '2020-01-23', '233+12%'),
-(2, 'kamil', '2020-01-20', '244'),
-(3, 'kamila', '2020-01-23', '2746'),
-(4, 'test', '2020-01-24', '3333'),
-(5, 'Test', '2020-01-23', '1. 12342 ./213412 %12\r\n2. t4ts32 /12 %1\r\n3. 42r354 %12 / 9');
-
 -- --------------------------------------------------------
 
 --
@@ -62,13 +55,6 @@ CREATE TABLE `clients_backup` (
 --
 -- Zrzut danych tabeli `clients_backup`
 --
-
-INSERT INTO `clients_backup` (`ID`, `imie_Nazwisko`, `data_wizyty`, `numer_farby`) VALUES
-(1, 'syla', '2020-01-23', '233+12%'),
-(2, 'kamil', '2020-01-20', '244'),
-(3, 'kamila', '2020-01-23', '2746'),
-(4, 'test', '2020-01-24', '3333'),
-(5, 'Test', '2020-01-23', '1. 12342 ./213412 %12\r\n2. t4ts32 /12 %1\r\n3. 42r354 %12 / 9');
 
 --
 -- Indeksy dla zrzutów tabel
