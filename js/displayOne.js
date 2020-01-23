@@ -19,10 +19,14 @@ function findOne(id) {
             output += '<input type="date" value="' + client[i][0] +'" class="form-control" name="' + client[i][1] + '"/></label><br/>' 
         else if(client[i][1] == 'id')
             output += '<input type="number" value="' + client[i][0] +'" class="form-control" name="' + client[i][1] + '" readonly="readonly"/></label><br/>'
+        else if(client[i][1] == 'farba')
+            output += '<textarea id="text" name="' + client[i][1] + '" cols="30" rows="4" class="form-control">' + client[i][0] + '</textarea>'
         else
             output += '<input type="text" value="' + client[i][0] +'" class="form-control" name="' + client[i][1] + '"/></label><br/>'
     }
     output += '<p class="text-light">Dane klienta zostaną zamienione. Jesteś pewien?</p><input type="submit" value="Edytuj" class="btn btn-success"/></form>'
 
     area.html(output)
+    console.log(document.getElementById('text').value)
+    document.getElementById('text').value = document.getElementById('text').value.replace(/<br>/gi,'')
 }

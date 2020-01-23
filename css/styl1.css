@@ -52,3 +52,12 @@ input::-webkit-outer-spin-button {
     display: flex;
     margin-top: .5rem;
 }
+
+textarea {
+    outline: none;
+    resize: none !important;
+}
+
+td {
+    vertical-align: middle !important;
+}
