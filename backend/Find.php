@@ -5,7 +5,7 @@ $condition = '';
 $output = '';
 $counter = 0;
 if(isset($_POST['imie_nazwisko']) && $_POST['imie_nazwisko'] != '') {
-    $imie_nazwisko = strtolower($_POST['imie_nazwisko']);
+    $imie_nazwisko = mb_strtolower($_POST['imie_nazwisko']);
     if($counter > 0) $condition = $condition." or ";
     $condition = $condition." imie_nazwisko like '%$imie_nazwisko%'";
     $counter++;
