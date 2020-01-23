@@ -4,6 +4,7 @@ include 'query.php';
 
 $id = $_POST['id'];
 $dane = $_POST['dane'];
+$dane = mb_strtolower($dane);
 $data = $_POST['data'];
 $farba = $_POST['farba'];
 

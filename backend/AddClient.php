@@ -4,7 +4,7 @@ include 'query.php';
 $output = '';
 //var_dump($_POST);
 if($_POST['imie_nazwisko'] != '' && $_POST['data'] != '' && $_POST['farba'] != '') {
-    $data = strtolower($_POST['imie_nazwisko']);
+    $data = mb_strtolower($_POST['imie_nazwisko']);
     $date = $_POST['data'];
     $color = $_POST['farba'];
                         
