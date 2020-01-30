@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Klienci</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script defer src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.1/jquery.min.js"></script>
+    <script defer src="js/ShowForm.js"></script>
+    <script defer src="js/ShowResults.js"></script>
+    <script defer src="js/addClient.js"></script>
+    <script defer src="js/ToggleElements.js"></script>
+    <script defer src="js/displayOne.js"></script>
+    <script defer src="js/miscFnc.js"></script>
+    <script defer src="js/delete.js"></script>
     <!--<link rel="stylesheet" href="css/style.css">-->
     <link rel="stylesheet" href="css/styl1.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -35,13 +46,13 @@
                     <div id="form1" class="col-sm-9 mb-3" style="display: none;">
                         <form id='find' method="post" action="">
                             <div id="dane">
-                                <input type="text" name="imie_nazwisko" placeholder="imie i nazwisko" class="form-control"/>
+                                <input type="text" id="imie_nazwisko" placeholder="imie i nazwisko" class="form-control"/>
                             </div> 
                             <div id="kolor">
-                                <input type="text" name="kolor" placeholder="kolor" class="form-control"/>
+                                <input type="text" id="kolor" placeholder="kolor" class="form-control"/>
                             </div> 
                             <div id="dataForm">
-                                <input type="date" name="data_wizyty" class="form-control" id="data" placeholder="data wizyty"/>
+                                <input type="date" id="data_wizyty" class="form-control" id="data" placeholder="data wizyty"/>
                             </div>
                             <div id="dataBtn">
                                 <input type="button" value="wczoraj" onclick="FormSetDate(-1)" class="btn btn-secondary"/>
@@ -94,15 +105,5 @@
             <img src="img/logo.png" alt="logo" class="img-fluid logo-img">
         </section>
     </main>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.1/jquery.min.js"></script>
-    <script src="js/ShowForm.js"></script>
-    <script src="js/ShowResults.js"></script>
-    <script src="js/addClient.js"></script>
-    <script src="js/ToggleElements.js"></script>
-    <script src="js/displayOne.js"></script>
-    <script src="js/deleteOne.js"></script>
 </body>
 </html>

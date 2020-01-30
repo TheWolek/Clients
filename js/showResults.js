@@ -1,3 +1,4 @@
+//wyswietlanie tabeli wszystkich klientow
 function ShowResults() {
     ToggleElement('form1',false)
     ToggleElement('form2',false)
@@ -6,93 +7,36 @@ function ShowResults() {
     $('#header').html('Baza klientów')
 
     $.ajax({
-        url:'/clients/backend/displayAll.php',
+        url:'http://localhost:3000/clients',
         type:'GET',
         success:function(data){
-            $("#Results").html(data)
+            data = data.data
+            let output = "<div id='FResults'><table class='table table-dark table-hover'><thead class='thead-dark'><tr><th>ID</th><th>Imie i Nazwisko</th><th>data wizyty</th><th>numer farby</th><th>Akcje</th></tr></thead>"
+            for(let i=0; i<data.length;i++) {
+                let idRow = '"idRow' + data[i].ID+'"'
+                let DaneRow = '"DaneRow' + data[i].ID+'"'
+                let dataRow = '"dataRow' + data[i].ID+'"'
+                let farbaRow = '"farbaRow' + data[i].ID+'"'
+                let dane = data[i].imie_Nazwisko.split(' ')
+                    .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+                    .join(' ')
+                let date = data[i].data_wizyty
+                date = GoodDate(date)
+                let today = new Date()
+                today = getFormatedDate(today)
+
+                dateStr = '<span id='+ dataRow +'>'+ date +'</span>'
+                if(date < today)
+                    dateStr += '<span class="badge badge-danger ml-1">Stary</span>'
+                else if(date == today)
+                    dateStr += '<span class="badge badge-success ml-1">Dzisiaj</span>'
+                console.log(date)
+                let color = nl2br(data[i].numer_farby)
+                output += '<tr><td id='+idRow+'>' + data[i].ID + '</td><td id='+DaneRow+'>' + dane + '</td><td>'+ dateStr +'</td><td id='+farbaRow+'>' + color + '</td>'
+                output += "<td><div class='action-flex'><input type='button' onClick='findOne("+ data[i].ID +")' class='btn btn-info' value='Edytuj'/><input type='button' onClick='deleteOne("+ data[i].ID +")' class='btn btn-danger ml-2' value='Usuń'/></div></td></tr>"
+            }
+            output += '</table></div>'
+            $("#Results").html(output)
         }
     })
 }
-
-function DeleteOldSure() {
-    ToggleElement('deleteOldSubmit',true)
-    ToggleElement('deleteOldBtn',false)
-    $('#Results').html('')
-    $('#Results').html('<p class="text-danger font-weight-bold">Wszystkie stare wizyty zostaną usunięte. Jesteś pewien?</p>')
-}
-
-function DeleteSelected() {
-    const selected = document.getElementsByName('select')
-    let selectedArr = []
-    let output
-    let bad = false
-    selected.forEach((select) => {
-        if(select.checked)
-            selectedArr.push(select.value)
-    })
-    //console.log(selectedArr)
-    let count = selectedArr.length
-
-    document.getElementById('Results').innerHTML = ''
-    if(count == 1) 
-        output = 'Wybrana 1 wizyta zostanie usunięta. Jesteś pewien?'
-    else if (count > 1)
-        output = 'Wybrane ' + count + ' wizyt zostaną usuniętę. Jesteś pewien?'
-    else {
-        output = 'Nie wybrano żadnych wizyt'
-        bad = true
-    }
-    document.getElementById('Results').innerHTML = '<p class="text-danger font-weight-bold">' + output + '</p>'
-
-    if(!bad) {
-        document.getElementById('deleteSelectedForm').action += '?selected=[' + selectedArr + ']'
-        ToggleElement('deleteSelectedSubmit',true)
-        ToggleElement('deleteSelectedBtn',false) 
-    }
-    
-    //console.log(document.getElementById('deleteSelectedForm').action += '?selected=[' + selectedArr + ']')
-}
-
-$(function () {
-
-    $("#find").on( "submit" , function(){
-        // Intercept the form submission
-        var formdata = $(this).serialize() // Serialize all form data
-        ToggleElement('deleteOldSubmit',false)
-        ToggleElement('deleteOldBtn',true)
-        ToggleElement('deleteSelectedSubmit',false)
-        ToggleElement('deleteSelectedBtn',true)
-    
-        // Post data to your PHP processing script
-        $.post( "/clients/backend/Find.php", formdata, function(data) {
-            // Act upon the data returned, setting it to #success <div>
-            $("#Results").html ('')
-            $("#Results").html (data)
-        })
-    
-        return false // Prevent the form from actually submitting
-    })
-
-})
-
-$(function () {
-
-    $("#findOld").on( "submit" , function(){
-        // Intercept the form submission
-        var formdata = $(this).serialize() // Serialize all form data
-        ToggleElement('deleteOldSubmit',false)
-        ToggleElement('deleteOldBtn',true)
-        ToggleElement('deleteSelectedSubmit',false)
-        ToggleElement('deleteSelectedBtn',true)
-    
-        // Post data to your PHP processing script
-        $.post( "/clients/backend/FindOld.php", formdata, function(data) {
-            // Act upon the data returned, setting it to #success <div>
-            $("#Results").html ('')
-            $("#Results").html (data)
-        })
-    
-        return false // Prevent the form from actually submitting
-    })
-
-})
