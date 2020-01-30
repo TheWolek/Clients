@@ -1,5 +1,6 @@
 const cors = require('cors')
 const mysql = require('mysql')
+const bodyParser = require('body-parser')
 
 const express = require('express'),
     app = express(),
@@ -37,4 +38,9 @@ app.get('/clients',(req,res) => {
                 data: results
             })
     })
+})
+
+app.post('/clients/find',(req,res) => {
+    let dane = req.body.dane
+    console.log(dane)
 })
