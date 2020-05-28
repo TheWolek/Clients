@@ -2,29 +2,22 @@
 include 'query.php';
 
 $output = '';
-//var_dump($_POST);
-if($_POST['telefon'] != '' && $_POST['data'] != '' && $_POST['farba'] != '') {
-    $phone = $_POST['telefon'];
-    $date = $_POST['data'];
-    $color = $_POST['farba'];
+if($_POST['imie_nazwisko'] != '') {
+    $data = mb_strtolower($_POST['imie_nazwisko']);
                         
-    if(strlen($phone) != 9) {
-        //$output = "<div class='alert alert-danger text-center' role='alert'><h4 class='alert heading'>Podany numer telefonu jest nie poprawny!</h4></div>";
-        header('location: http://localhost/clients/Action.php?succ=0&err=phone');
-    } else {
-            $sql = "insert into clients (telefon,data_wizyty,numer_farby) values('$phone','$date','$color')";
-        if($result = DB_query($sql)) {
-            //echo "<div class='alert alert-success text-center' role='alert'><h4 class='alert heading'>Pomyślnie dodano nowego klienta!</h4></div>";
-            header('location: http://localhost/clients/Action.php?succ=1&msg=new');
+        $sql = "insert into clients (imie_nazwisko) values('$data')";
+        if($result = DB_query($sql,TRUE)) {
+            $sql = 'select ID from clients where imie_nazwisko like "'. $data.'"';
+            $result = DB_query($sql,FALSE);
+            while($row = $result->fetch_assoc()) {
+                echo json_encode(["status" => true, "CID" => $row['ID']]);
+            }
         } else {
-            //echo "<div class='alert alert-danger text-center' role='alert'><h4 class='alert heading'>Wystąpił błąd przy dodwaniu klienta!</h4></div>";
-            header('location: http://localhost/clients/Action.php?succ=0&err=err');
+            echo json_encode(["status" => false, "err" => "DBerr"]);
         }
     }
 } else {
-    header('location: http://localhost/clients/Action.php?succ=0&err=fields');
-    //$output = "<div class='alert alert-danger text-center' role='alert'><h4 class='alert heading'>Wypełnij wszystkie pola!</h4></div>";
-}           
-//echo $output;       
+    echo json_encode(["status" => false, "err" => "fields"]);
+}                 
 ?>           
                 

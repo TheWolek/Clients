@@ -1,31 +1,12 @@
-function ShowResults() {
-    ToggleElement('form1',false)
-    ToggleElement('form2',false)
-    ToggleElement('Results',true)
-    ToggleTab(0)
-    $('#header').html('Wszyscy klienci')
-
-    $.ajax({
-        url:'/clients/backend/displayAll.php',
-        type:'GET',
-        success:function(data){
-            $("#Results").html(data)
-        }
-    })
-}
-
-function DeleteOldSure() {
-    ToggleElement('deleteOldSubmit',true)
-    ToggleElement('deleteOldBtn',false)
-    $('#Results').html('')
-    $('#Results').html('<p class="text-danger font-weight-bold">Wszystkie stare wizyty zostaną usunięte. Jesteś pewien?</p>')
-}
-
 $(function () {
 
     $("#find").on( "submit" , function(){
         // Intercept the form submission
-        var formdata = $(this).serialize() // Serialize all form data
+        let formdata = $(this).serialize() // Serialize all form data
+        ToggleElement('deleteOldSubmit',false)
+        ToggleElement('deleteOldBtn',true)
+        ToggleElement('deleteSelectedSubmit',false)
+        ToggleElement('deleteSelectedBtn',true)
     
         // Post data to your PHP processing script
         $.post( "/clients/backend/Find.php", formdata, function(data) {
@@ -37,22 +18,31 @@ $(function () {
         return false // Prevent the form from actually submitting
     })
 
-})
+    $("#formAdd").on("submit", function() {
+        let formdata = $(this).serialize()
 
-$(function () {
+        $.post("/clients/backend/AddClient.php", formdata, function(data) {
+            data = JSON.parse(data)
+            let output
+            let CID
+            //console.log(data)
 
-    $("#findOld").on( "submit" , function(){
-        // Intercept the form submission
-        var formdata = $(this).serialize() // Serialize all form data
-    
-        // Post data to your PHP processing script
-        $.post( "/clients/backend/FindOld.php", formdata, function(data) {
-            // Act upon the data returned, setting it to #success <div>
-            $("#Results").html ('')
-            $("#Results").html (data)
+            if(data.status) {
+                CID = data.CID
+                ToggleTab(1)
+                ToggleElement("form2",false)
+                ToggleElement("form1",true)
+                notify(1,"Pomyślnie dodano klienta")
+                findOne(CID)
+            } else {
+                if(data.err == "fields")
+                    output = "Uzupełnij puste pola"
+                else 
+                    output = "Błąd bazy danych"
+                notify(1,output)
+            }
         })
-    
-        return false // Prevent the form from actually submitting
+        
+        return false
     })
-
 })

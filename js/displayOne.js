@@ -1,30 +1,34 @@
-//displayOne
-function findOne(id) {
-    //0-id 1-imie 2-nazwisko 3-telefon 4-data 5-farba
-    let client = [
-        [$('#idRow'+id).html(),"id"],
-        [$('#telefonRow'+id).html(),"telefon"],
-        [$('#dataRow'+id).html(),"data"],
-        [$('#farbaRow'+id).html(),"farba"]
-    ]
+//global vars to prevent opening multiple edit and remove forms
+let inEditMode = false
+let inDeleteMode = false
+let hiddenProc = {
+    id: "",
+    tresc: ""
+}
 
-    //console.log()
-    area = $('#FResults') //zmienic w szukaniu klienta
+//finds data about one client and orders to display procedures
+function findOne(id) {
+    let url = '/clients/backend/showProcedure.php?ID=' + id
+    area = $('#Results')
     area.html('')
 
-    let output = '<form action="/clients/backend/ModifyOne.php" method="post">'
-    for(let i=0;i<client.length;i++) {
-        output += '<div class="form-group"><label class="text-light">' + client[i][1]
-        if(client[i][1] == 'data') 
-            output += '<input type="date" value="' + client[i][0] +'" class="form-control" name="' + client[i][1] + '"/></label><br/>'
-        else if (client[i][1] == 'telefon')
-            output += '<input type="number" value="' + client[i][0] +'" class="form-control" name="' + client[i][1] + '"/></label><br/>' 
-        else if(client[i][1] == 'id')
-            output += '<input type="number" value="' + client[i][0] +'" class="form-control" name="' + client[i][1] + '" readonly="readonly"/></label><br/>'
-        else
-            output += '<input type="text" value="' + client[i][0] +'" class="form-control" name="' + client[i][1] + '"/></label><br/>'
-    }
-    output += '<p class="text-light">Dane klienta zostaną zamienione. Jesteś pewien?</p><input type="submit" value="Edytuj" class="btn btn-success"/></form>'
+    inEditMode = false
+    inDeleteMode = false
 
-    area.html(output)
+    $.get(url,function(data) {
+        //console.log(data)
+        data = JSON.parse(data)
+        //console.log(data)
+        let CID = data.clientData.CID
+        let name = data.clientData.dane
+        let procs = data.procs
+        
+        let output = "<div class='client-card' id='client-card'>"
+        output += "<span class='client-id' id='client-id'>"+CID+"</span> <span class='client-name' id='client-name"+CID+"'>Imię i Nazwisko: "+name+"</span><button class='btn btn-primary client-proc-add' onclick='addProc("+CID+")'>Dodaj</button><div id='client-proc'>Zabiegi:</div></div>"
+        area.html(output)
+        for(let i=0;i<procs.length;i++) {
+            appendProc(procs[i].ID,procs[i].tresc)
+        }
+        displayAddProcForm(CID)
+    })
 }
