@@ -2,24 +2,21 @@
 include 'query.php';
 
 $output = '';
-//var_dump($_POST);
-if($_POST['imie_nazwisko'] != '' && $_POST['data'] != '' && $_POST['farba'] != '') {
+if($_POST['imie_nazwisko'] != '') {
     $data = mb_strtolower($_POST['imie_nazwisko']);
-    $date = $_POST['data'];
-    $color = $_POST['farba'];
                         
-        $sql = "insert into clients (imie_nazwisko,data_wizyty,numer_farby) values('$data','$date','$color')";
+        $sql = "insert into clients (imie_nazwisko) values('$data')";
         if($result = DB_query($sql,TRUE)) {
-            //echo "<div class='alert alert-success text-center' role='alert'><h4 class='alert heading'>Pomyślnie dodano nowego klienta!</h4></div>";
-            header('location: /clients/Action.php?succ=1&msg=new');
+            $sql = 'select ID from clients where imie_nazwisko like "'. $data.'"';
+            $result = DB_query($sql,FALSE);
+            while($row = $result->fetch_assoc()) {
+                echo json_encode(["status" => true, "CID" => $row['ID']]);
+            }
         } else {
-            //echo "<div class='alert alert-danger text-center' role='alert'><h4 class='alert heading'>Wystąpił błąd przy dodwaniu klienta!</h4></div>";
-            header('location: /clients/Action.php?succ=0&err=err');
+            echo json_encode(["status" => false, "err" => "DBerr"]);
         }
 } else {
-    header('location: /clients/Action.php?succ=0&err=fields');
-    //$output = "<div class='alert alert-danger text-center' role='alert'><h4 class='alert heading'>Wypełnij wszystkie pola!</h4></div>";
-}           
-//echo $output;       
+    echo json_encode(["status" => false, "err" => "fields"]);
+}                 
 ?>           
                 

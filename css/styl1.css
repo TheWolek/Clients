@@ -3,7 +3,7 @@ body {
 }
 
 .nav-link {
-    transition: .2s ease-in-out;
+    transition: .3s ease-in-out;
 }
 
 input::-webkit-inner-spin-button,
@@ -20,7 +20,7 @@ input::-webkit-outer-spin-button {
     display: grid;
     grid-template-columns: 1fr 2fr auto;
     grid-template-rows: auto;
-    grid-template-areas: "dane dane dane" "kolor kolor kolor" "data data dataBtn" "submit . .";
+    grid-template-areas: "dane dane dane" "submit . .";
     grid-row-gap: 1em;
 }
 
@@ -45,7 +45,7 @@ input::-webkit-outer-spin-button {
 
 .action-flex {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .find-submit-flex {
@@ -60,4 +60,67 @@ textarea {
 
 td {
     vertical-align: middle !important;
+}
+
+.client-card {
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+}
+
+.client-id {
+    display: none;
+}
+
+.client-name {
+    font-weight: bold;
+    font-size: 19px;
+    margin-bottom: .8rem;
+}
+
+.client-proc-id {
+    padding: .6rem .6rem;
+    border: 1px solid #555;
+    border-radius: 7px;
+    margin: .3rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.client-proc-add {
+    width: 5vw;
+    margin-bottom: .8rem;
+}
+
+#clientProcAddForm {
+    display: none;
+    justify-content: space-between;
+}
+
+#client-proc-id-input {
+    width: 3vw;
+}
+
+.form-proc-edit {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.notify {
+    width: 30vw;
+    padding: .7rem;
+    /* display: none; */
+    opacity: 0;
+    transition: all 1s ease-in-out;
+    font-weight: 600;
+    margin-bottom: .8rem;
+}
+
+#notifyContainer {
+    position: absolute;
+    top: 1vh;
+    right: 34vw;
+    display: flex;
+    flex-direction: column;
 }

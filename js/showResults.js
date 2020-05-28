@@ -1,63 +1,8 @@
-function ShowResults() {
-    ToggleElement('form1',false)
-    ToggleElement('form2',false)
-    ToggleElement('Results',true)
-    ToggleTab(0)
-    $('#header').html('Baza klientów')
-
-    $.ajax({
-        url:'/clients/backend/displayAll.php',
-        type:'GET',
-        success:function(data){
-            $("#Results").html(data)
-        }
-    })
-}
-
-function DeleteOldSure() {
-    ToggleElement('deleteOldSubmit',true)
-    ToggleElement('deleteOldBtn',false)
-    $('#Results').html('')
-    $('#Results').html('<p class="text-danger font-weight-bold">Wszystkie stare wizyty zostaną usunięte. Jesteś pewien?</p>')
-}
-
-function DeleteSelected() {
-    const selected = document.getElementsByName('select')
-    let selectedArr = []
-    let output
-    let bad = false
-    selected.forEach((select) => {
-        if(select.checked)
-            selectedArr.push(select.value)
-    })
-    //console.log(selectedArr)
-    let count = selectedArr.length
-
-    document.getElementById('Results').innerHTML = ''
-    if(count == 1) 
-        output = 'Wybrana 1 wizyta zostanie usunięta. Jesteś pewien?'
-    else if (count > 1)
-        output = 'Wybrane ' + count + ' wizyt zostaną usuniętę. Jesteś pewien?'
-    else {
-        output = 'Nie wybrano żadnych wizyt'
-        bad = true
-    }
-    document.getElementById('Results').innerHTML = '<p class="text-danger font-weight-bold">' + output + '</p>'
-
-    if(!bad) {
-        document.getElementById('deleteSelectedForm').action += '?selected=[' + selectedArr + ']'
-        ToggleElement('deleteSelectedSubmit',true)
-        ToggleElement('deleteSelectedBtn',false) 
-    }
-    
-    //console.log(document.getElementById('deleteSelectedForm').action += '?selected=[' + selectedArr + ']')
-}
-
 $(function () {
 
     $("#find").on( "submit" , function(){
         // Intercept the form submission
-        var formdata = $(this).serialize() // Serialize all form data
+        let formdata = $(this).serialize() // Serialize all form data
         ToggleElement('deleteOldSubmit',false)
         ToggleElement('deleteOldBtn',true)
         ToggleElement('deleteSelectedSubmit',false)
@@ -73,26 +18,31 @@ $(function () {
         return false // Prevent the form from actually submitting
     })
 
-})
+    $("#formAdd").on("submit", function() {
+        let formdata = $(this).serialize()
 
-$(function () {
+        $.post("/clients/backend/AddClient.php", formdata, function(data) {
+            data = JSON.parse(data)
+            let output
+            let CID
+            //console.log(data)
 
-    $("#findOld").on( "submit" , function(){
-        // Intercept the form submission
-        var formdata = $(this).serialize() // Serialize all form data
-        ToggleElement('deleteOldSubmit',false)
-        ToggleElement('deleteOldBtn',true)
-        ToggleElement('deleteSelectedSubmit',false)
-        ToggleElement('deleteSelectedBtn',true)
-    
-        // Post data to your PHP processing script
-        $.post( "/clients/backend/FindOld.php", formdata, function(data) {
-            // Act upon the data returned, setting it to #success <div>
-            $("#Results").html ('')
-            $("#Results").html (data)
+            if(data.status) {
+                CID = data.CID
+                ToggleTab(1)
+                ToggleElement("form2",false)
+                ToggleElement("form1",true)
+                notify(1,"Pomyślnie dodano klienta")
+                findOne(CID)
+            } else {
+                if(data.err == "fields")
+                    output = "Uzupełnij puste pola"
+                else 
+                    output = "Błąd bazy danych"
+                notify(1,output)
+            }
         })
-    
-        return false // Prevent the form from actually submitting
+        
+        return false
     })
-
 })
